@@ -47,10 +47,10 @@ public class ProblemsSpecification : BaseSpecification<Problem>
                 pt.Name.Contains(parameters.ProblemName)));
         }
 
-        if (parameters.Divisions != null && parameters.Divisions.Any())
+        if (parameters.Ranks != null && parameters.Ranks.Any())
         {
-            var divPredicate = DivisionExpressions.GetPredicate(parameters.Divisions);
-            predicate = predicate.And(divPredicate.Expand());
+            var rankPredicate = RankExpressions.GetPredicate(parameters.Ranks);
+            predicate = predicate.And(rankPredicate.Expand());
         }
 
         predicate = predicate.And(p => p.Rating >= parameters.MinRating && p.Rating <= parameters.MaxRating);
@@ -88,7 +88,7 @@ public class ProblemsSpecification : BaseSpecification<Problem>
                 else OrderByDescending = convertedDifficultyExpr;
                 break;
 
-            case "divisions":
+            case "ranks":
             case "rating":
                 if (isAscending) OrderBy = p => p.Rating;
                 else OrderByDescending = p => p.Rating;

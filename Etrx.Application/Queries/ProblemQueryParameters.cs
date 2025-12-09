@@ -9,7 +9,7 @@ public record ProblemQueryParameters(
     string? Tags = null,
     string? Indexes = null,
     string? ProblemName = null,
-    List<DivisionsEnum>? Divisions = null,
+    List<RanksEnum>? Ranks = null,
     int MinRating = 0,
     int MaxRating = 10000,
     double MinPoints = 0,

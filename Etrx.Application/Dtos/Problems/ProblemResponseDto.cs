@@ -13,5 +13,5 @@ public class ProblemResponseDto
     public int SolvedCount { get; set; }
     public long StartTime { get; set; } 
     public int Difficulty { get; set; }
-    public DivisionsEnum? Division { get; set; }
+    public RanksEnum? Rank { get; set; }
 }
