@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Etrx.Application.Interfaces;
 using Etrx.Application.Repositories.UnitOfWork;
+using Etrx.Domain.Expressions;
 using Etrx.Domain.Models;
 using Etrx.Domain.Models.ParsingModels.Codeforces;
 using Etrx.Domain.Models.ParsingModels.Dl;
@@ -88,6 +89,10 @@ public class CodeforcesService : ICodeforcesService
                 problemId = Guid.NewGuid();
                 problemEntity.Id = problemId;
             }
+
+            var contestName = existingContest.ContestTranslations.Select(ct => ct.Name).FirstOrDefault(name => !string.IsNullOrWhiteSpace(name))?? "-";
+
+            problemEntity.Division = ContestExpressions.GetDivisionFromContestName(contestName);
 
             problemEntity.SolvedCount = solvedCount;
             problemEntity.GuidContestId = existingContest.Id;

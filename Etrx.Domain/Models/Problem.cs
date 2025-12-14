@@ -1,7 +1,3 @@
-using Etrx.Domain.Enums;
-using Etrx.Domain.Expressions;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Etrx.Domain.Models;
 
 public class Problem : Entity
@@ -18,4 +14,5 @@ public class Problem : Entity
     public int Rating { get; set; } = 0;
     public int SolvedCount { get; set; } = 0;
     public List<string> Tags { get; set; } = [];
+    public string Division { get; set; } = string.Empty;
 }

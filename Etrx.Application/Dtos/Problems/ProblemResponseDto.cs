@@ -14,4 +14,5 @@ public class ProblemResponseDto
     public long StartTime { get; set; } 
     public int Difficulty { get; set; }
     public RanksEnum? Rank { get; set; }
+    public string? Division { get; set; } = string.Empty;
 }

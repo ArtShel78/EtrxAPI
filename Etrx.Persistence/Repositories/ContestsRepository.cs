@@ -86,6 +86,7 @@ public class ContestsRepository : GenericRepository<Contest>, IContestsRepositor
 
         return await _dbSet
             .AsNoTracking()
+            .Include(c => c.ContestTranslations)
             .Where(c => contestIds.Contains(c.ContestId))
             .ToListAsync();
     }

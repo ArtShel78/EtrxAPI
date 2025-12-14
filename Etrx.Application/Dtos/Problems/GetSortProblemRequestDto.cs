@@ -9,6 +9,7 @@ public record class GetSortProblemRequestDto(
     string? Indexes = null,
     string? ProblemName = null,
     List<RanksEnum>? Ranks = null,
+    List<string>? Divisions = null,
     int MinRating = 0,
     int MaxRating = 10000,
     double MinPoints = 0,

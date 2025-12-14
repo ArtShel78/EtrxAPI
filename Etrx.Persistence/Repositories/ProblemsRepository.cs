@@ -84,6 +84,17 @@ public class ProblemsRepository : GenericRepository<Problem>, IProblemsRepositor
             .ToListAsync();
     }
 
+    public async Task<List<string>> GetAllDivisionsAsync()
+    {
+        return await _dbSet
+            .AsNoTracking()
+            .Where(p => !string.IsNullOrEmpty(p.Division))
+            .Select(p => p.Division)
+            .Distinct()
+            .OrderBy(d => d)
+            .ToListAsync();
+    }
+
     public async Task<PagedResultDto<TResult>> GetPagedAsync<TResult>(
         BaseSpecification<Problem> spec,
         PaginationQueryParameters pagination,
