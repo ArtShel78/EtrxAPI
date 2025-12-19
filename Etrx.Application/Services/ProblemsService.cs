@@ -140,6 +140,6 @@ public class ProblemsService : IProblemsService
     }
     public async Task<List<string>> GetAllDivisionsAsync()
     {
-        return await _unitOfWork.Problems.GetAllDivisionsAsync();
+        return await _unitOfWork.Contests.GetAllDivisionsAsync();
     }
 }

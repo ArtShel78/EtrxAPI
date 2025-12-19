@@ -147,11 +147,7 @@ public class CodeforcesService : ICodeforcesService
 
             contestEntity.Gym = gym;
 
-            var contestName = contestEntity.ContestTranslations
-            .Select(ct => ct.Name)
-            .FirstOrDefault(name => !string.IsNullOrWhiteSpace(name)) ?? "-";
-
-            contestEntity.Division = ContestExpressions.GetDivisionFromContestName(contestName);
+            contestEntity.Division = ContestExpressions.GetDivisionFromContestName(incomingContest.Name);
 
             contestsToUpsert.Add(contestEntity);
 
