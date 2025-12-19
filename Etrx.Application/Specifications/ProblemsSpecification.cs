@@ -55,8 +55,9 @@ public class ProblemsSpecification : BaseSpecification<Problem>
         if (parameters.Divisions != null && parameters.Divisions.Any())
         {
             predicate = predicate.And(p =>
-                !string.IsNullOrEmpty(p.Division) &&
-                parameters.Divisions.Contains(p.Division)
+                p.Contest != null &&
+                !string.IsNullOrEmpty(p.Contest.Division) &&
+                parameters.Divisions.Contains(p.Contest.Division)
             );
         }
 
@@ -118,8 +119,8 @@ public class ProblemsSpecification : BaseSpecification<Problem>
                 break;
 
             case "division":
-                if (isAscending) OrderBy = p => p.Division;
-                else OrderByDescending = p => p.Division;
+                if (isAscending) OrderBy = p => p.Contest.Division;
+                else OrderByDescending = p => p.Contest.Division;
                 break;
 
             case "contestid":

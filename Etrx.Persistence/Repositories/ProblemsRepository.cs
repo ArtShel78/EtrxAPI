@@ -88,8 +88,9 @@ public class ProblemsRepository : GenericRepository<Problem>, IProblemsRepositor
     {
         return await _dbSet
             .AsNoTracking()
-            .Where(p => !string.IsNullOrEmpty(p.Division))
-            .Select(p => p.Division)
+            .Include(p => p.Contest)
+            .Where(p => p.Contest != null && !string.IsNullOrEmpty(p.Contest.Division))
+            .Select(p => p.Contest.Division)
             .Distinct()
             .OrderBy(d => d)
             .ToListAsync();

@@ -31,7 +31,7 @@ public class ProblemsProfile : Profile
             .ForMember(dest => dest.Difficulty, opt => opt.MapFrom(ProblemExpressions.DifficultyExpression))
             .ForMember(dest => dest.SolvedCount, opt => opt.MapFrom(src => src.SolvedCount))
             .ForMember(dest => dest.Rank, opt => opt.MapFrom(src => RankExpressions.GetRank(src.Rating)))
-            .ForMember(dest => dest.Division, opt => opt.MapFrom(src => src.Division));
+            .ForMember(dest => dest.Division, opt => opt.MapFrom(src => src.Contest.Division));
 
         CreateMap<CodeforcesProblem, Problem>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())

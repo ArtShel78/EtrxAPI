@@ -90,10 +90,6 @@ public class CodeforcesService : ICodeforcesService
                 problemEntity.Id = problemId;
             }
 
-            var contestName = existingContest.ContestTranslations.Select(ct => ct.Name).FirstOrDefault(name => !string.IsNullOrWhiteSpace(name))?? "-";
-
-            problemEntity.Division = ContestExpressions.GetDivisionFromContestName(contestName);
-
             problemEntity.SolvedCount = solvedCount;
             problemEntity.GuidContestId = existingContest.Id;
             problemsToUpsert.Add(problemEntity);
@@ -150,6 +146,13 @@ public class CodeforcesService : ICodeforcesService
             }
 
             contestEntity.Gym = gym;
+
+            var contestName = contestEntity.ContestTranslations
+            .Select(ct => ct.Name)
+            .FirstOrDefault(name => !string.IsNullOrWhiteSpace(name)) ?? "-";
+
+            contestEntity.Division = ContestExpressions.GetDivisionFromContestName(contestName);
+
             contestsToUpsert.Add(contestEntity);
 
             ContestTranslation contestTranslationEntity;
